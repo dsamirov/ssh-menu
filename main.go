@@ -16,6 +16,7 @@ import (
 
 func main() {
 	config := flag.String("config", ".ssh/config", "ssh config filename")
+	menuSize := flag.Int("size", 30, "menu size")
 	flag.Parse()
 
 	homeDir, err := os.UserHomeDir()
@@ -67,7 +68,7 @@ func main() {
 	prompt := promptui.Select{
 		Label:     "Choose Your Fighter",
 		Items:     servers,
-		Size:      10,
+		Size:      *menuSize,
 		Templates: templates,
 		Searcher: func(input string, index int) bool {
 			server := servers[index]
